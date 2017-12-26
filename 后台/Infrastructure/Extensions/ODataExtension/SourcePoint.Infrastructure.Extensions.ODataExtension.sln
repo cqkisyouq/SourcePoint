@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Infrastructure.Extensions.ODataExtension", "SourcePoint.Infrastructure.Extensions.ODataExtension.csproj", "{07D1E850-EC69-44CC-B3EC-39D6BC1C9742}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{1D77648F-3B04-4828-ABD4-359942304A77}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.OData", "..\..\Common\Microsoft.AspNetCore.OData\Microsoft.AspNetCore.OData.csproj", "{4EF1F036-9E75-40BD-82B3-29C7149073F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07D1E850-EC69-44CC-B3EC-39D6BC1C9742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D1E850-EC69-44CC-B3EC-39D6BC1C9742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D1E850-EC69-44CC-B3EC-39D6BC1C9742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D1E850-EC69-44CC-B3EC-39D6BC1C9742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EF1F036-9E75-40BD-82B3-29C7149073F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EF1F036-9E75-40BD-82B3-29C7149073F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EF1F036-9E75-40BD-82B3-29C7149073F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EF1F036-9E75-40BD-82B3-29C7149073F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4EF1F036-9E75-40BD-82B3-29C7149073F5} = {1D77648F-3B04-4828-ABD4-359942304A77}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6B4E960-5E82-4240-89F4-F687F99A3BCF}
+	EndGlobalSection
+EndGlobal
