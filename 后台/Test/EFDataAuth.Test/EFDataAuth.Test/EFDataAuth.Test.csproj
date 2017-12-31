@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\Extensions\ExpressionExtension\ExpressionExtension\SourcePoint.Infrastructure.Extensions.ExpressionExtension.csproj" />
+    <ProjectReference Include="..\..\..\src\Infrastructure\Extensions\ExpressionExtension\ExpressionExtension\SourcePoint.Infrastructure.Extensions.ExpressionExtension.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D5F97F6F-979D-4107-92C6-83FC0ACC1EFA}"
 EndProject
@@ -15,29 +15,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{1193
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{602BC0AA-1553-46F5-8C46-D60FC1D615A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.OData", "Infrastructure\Common\Microsoft.AspNetCore.OData\Microsoft.AspNetCore.OData.csproj", "{A28678D6-B8EE-4138-9BBE-2CD647E7C986}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.OData", "src\Infrastructure\Common\Microsoft.AspNetCore.OData\Microsoft.AspNetCore.OData.csproj", "{A28678D6-B8EE-4138-9BBE-2CD647E7C986}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity4", "Identity4", "{3C664CD0-0A26-4776-AA0B-A28FC0ABF3AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Service.Identity.API", "Service\Identity.API\SourcePoint.Service.Identity.API.csproj", "{7BC8C31C-C8D6-44F3-B25E-CA1D43BE36E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Service.Identity.API", "src\Service\Identity.API\SourcePoint.Service.Identity.API.csproj", "{7BC8C31C-C8D6-44F3-B25E-CA1D43BE36E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{E0501939-5209-4932-8BF9-2B5A7149FD33}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Service.ApiGateway", "Service\ApiGateway\ApiGateway\SourcePoint.Service.ApiGateway.csproj", "{9EFF4F80-20E0-43E9-A9A2-7F325E01300F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Service.ApiGateway", "src\Service\ApiGateway\ApiGateway\SourcePoint.Service.ApiGateway.csproj", "{9EFF4F80-20E0-43E9-A9A2-7F325E01300F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Infrastructure.Extensions.ExpressionExtension", "Infrastructure\Extensions\ExpressionExtension\ExpressionExtension\SourcePoint.Infrastructure.Extensions.ExpressionExtension.csproj", "{A33522A5-199B-4DB9-8FF7-A6730A66C7CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Infrastructure.Extensions.ExpressionExtension", "src\Infrastructure\Extensions\ExpressionExtension\ExpressionExtension\SourcePoint.Infrastructure.Extensions.ExpressionExtension.csproj", "{A33522A5-199B-4DB9-8FF7-A6730A66C7CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Infrastructure.Extensions.SwaggerExtension", "Infrastructure\Extensions\SwaggerExtension\SourcePoint.Infrastructure.Extensions.SwaggerExtension.csproj", "{DC648FC4-D73F-4E63-B72B-407392B7F8E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Infrastructure.Extensions.SwaggerExtension", "src\Infrastructure\Extensions\SwaggerExtension\SourcePoint.Infrastructure.Extensions.SwaggerExtension.csproj", "{DC648FC4-D73F-4E63-B72B-407392B7F8E6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Infrastructure.Extensions.ODataExtension", "Infrastructure\Extensions\ODataExtension\SourcePoint.Infrastructure.Extensions.ODataExtension.csproj", "{A97626ED-D64E-4447-9788-A84D703DC02C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Infrastructure.Extensions.ODataExtension", "src\Infrastructure\Extensions\ODataExtension\SourcePoint.Infrastructure.Extensions.ODataExtension.csproj", "{A97626ED-D64E-4447-9788-A84D703DC02C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Honor", "Honor", "{AD987CE9-D3E5-4DE7-8973-618998A8B859}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honor", "Service\Honor.Api\Honor.Api\Honor.csproj", "{436E8366-3BC7-4ABE-8DA3-94273F58A63A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honor", "src\Service\Honor.Api\Honor.Api\Honor.csproj", "{436E8366-3BC7-4ABE-8DA3-94273F58A63A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SendSMS", "SendSMS", "{F0C12553-85DA-4692-B6A2-97BA2F1357B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Service.SendSMS", "Service\SendSMS.Api\SourcePoint.Service.SendSMS.csproj", "{7636EEAF-E9DC-4F56-A6F2-D598F99E3BDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Service.SendSMS", "src\Service\SendSMS.Api\SourcePoint.Service.SendSMS.csproj", "{7636EEAF-E9DC-4F56-A6F2-D598F99E3BDD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppService", "AppService", "{9D02088F-544E-4999-A28E-9D0689D43210}"
 EndProject
@@ -49,13 +49,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFDataAuth.Test", "Test\EFD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{B6A063B6-8616-4633-902E-CF66B3416D8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Data.BaseData", "Infrastructure\Data\Data\BaseData\SourcePoint.Data.BaseData.csproj", "{E9EDAB4C-BC03-4153-87A9-FF61E148CBCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Data.BaseData", "src\Infrastructure\Data\Data\BaseData\SourcePoint.Data.BaseData.csproj", "{E9EDAB4C-BC03-4153-87A9-FF61E148CBCB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pen", "Pen", "{9C348F2D-75B6-43C6-BB58-F34E84B5E6BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Service.Pen.Api", "Service\Pen.Api\PenAPI\SourcePoint.Service.Pen.Api.csproj", "{429DCF0F-240F-40D2-9D18-74EB1A230D5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Service.Pen.Api", "src\Service\Pen.Api\PenAPI\SourcePoint.Service.Pen.Api.csproj", "{429DCF0F-240F-40D2-9D18-74EB1A230D5D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Data.EFCore", "Infrastructure\Data\Data\SourcePoint.Data.EFCore\SourcePoint.Data.EFCore.csproj", "{57325061-CCF9-494A-AE42-4C93DC0E7D02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Data.EFCore", "src\Infrastructure\Data\Data\SourcePoint.Data.EFCore\SourcePoint.Data.EFCore.csproj", "{57325061-CCF9-494A-AE42-4C93DC0E7D02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{49AE8480-9A8F-4139-8206-1BE893969624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -120,8 +122,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{D5F97F6F-979D-4107-92C6-83FC0ACC1EFA} = {49AE8480-9A8F-4139-8206-1BE893969624}
 		{E4C09DC7-F087-41F1-8E77-9F556C61D8DF} = {D5F97F6F-979D-4107-92C6-83FC0ACC1EFA}
 		{3E770AEC-1DDB-4FBF-8764-3A6D6FDD51A9} = {732D2374-9823-4506-A061-3AADC6CCD8CA}
+		{11932C9B-DB79-459A-81BD-6AE9A91409DB} = {49AE8480-9A8F-4139-8206-1BE893969624}
 		{602BC0AA-1553-46F5-8C46-D60FC1D615A1} = {D5F97F6F-979D-4107-92C6-83FC0ACC1EFA}
 		{A28678D6-B8EE-4138-9BBE-2CD647E7C986} = {602BC0AA-1553-46F5-8C46-D60FC1D615A1}
 		{3C664CD0-0A26-4776-AA0B-A28FC0ABF3AC} = {11932C9B-DB79-459A-81BD-6AE9A91409DB}
@@ -135,6 +139,9 @@ Global
 		{436E8366-3BC7-4ABE-8DA3-94273F58A63A} = {AD987CE9-D3E5-4DE7-8973-618998A8B859}
 		{F0C12553-85DA-4692-B6A2-97BA2F1357B5} = {11932C9B-DB79-459A-81BD-6AE9A91409DB}
 		{7636EEAF-E9DC-4F56-A6F2-D598F99E3BDD} = {F0C12553-85DA-4692-B6A2-97BA2F1357B5}
+		{9D02088F-544E-4999-A28E-9D0689D43210} = {49AE8480-9A8F-4139-8206-1BE893969624}
+		{790C7D9A-15D3-4E91-B9C6-CA43376B93C4} = {49AE8480-9A8F-4139-8206-1BE893969624}
+		{5DD50CD0-443B-46AE-B883-AF9DB3E69B54} = {49AE8480-9A8F-4139-8206-1BE893969624}
 		{CD0E337F-F840-4C63-9C6C-EAC5CA716079} = {732D2374-9823-4506-A061-3AADC6CCD8CA}
 		{B6A063B6-8616-4633-902E-CF66B3416D8D} = {D5F97F6F-979D-4107-92C6-83FC0ACC1EFA}
 		{E9EDAB4C-BC03-4153-87A9-FF61E148CBCB} = {B6A063B6-8616-4633-902E-CF66B3416D8D}
