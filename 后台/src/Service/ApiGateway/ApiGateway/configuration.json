@@ -1,0 +1,44 @@
+﻿{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "www.w3school.com.cn",
+      "DownstreamPort": "80",
+      "UpstreamPathTemplate": "/",
+      //"UpstreamHttpMethod": [ "Get" ],
+      //"ServiceName": "newapp",
+      // "LoadBalancer": "RoundRobin", //RoundRobin：轮询  LeastConnection：最空闲服务
+      "QosOptions": {
+        "ExceptionsAllowedBeforeBreasking": 3,
+        "DurationOfBreak": 10,
+        "TimeoutValue": 5000
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHost": "www.w3school.com.cn",
+      "DownstreamPort": "80",
+      "UpstreamPathTemplate": "/{url}",
+      //"UpstreamHttpMethod": [ "Get" ],
+      //"ServiceName": "newapp",
+      // "LoadBalancer": "RoundRobin", //RoundRobin：轮询  LeastConnection：最空闲服务
+      "QosOptions": {
+        "ExceptionsAllowedBeforeBreasking": 3,
+        "DurationOfBreak": 10,
+        "TimeoutValue": 5000
+      }
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration",
+    "ServiceDiscoveryProvider": {
+      "Provider": "Consul",
+      "Host": "localhost",
+      "Port": 8500
+    }
+  }
+}

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  identity.api:
+    image: identity.api
+    build:
+      context: ./Identity.API
+      dockerfile: Dockerfile
+
+  penapi:
+    image: penapi
+    build:
+      context: ./PenAPI
+      dockerfile: Dockerfile
