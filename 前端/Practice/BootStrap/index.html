@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Bootstrap 学习测试</title>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <a href="#panel1" class=""  data-toggle="collapse">菜单栏</a>
+                    </div>
+                    <div class="panel-collapse collapse in" id="panel1">
+                        <div class="panel-body bg-info">
+                            <div class="panel-group  row">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <a href="#log" class="btn btn-default btn-block" data-toggle="tab">日志中心</a>
+                                        <a href="#logcenter" class="btn btn-default btn-block" data-toggle="tab">日志</a>
+                                        <a href="#user" class="btn btn-default btn-block" data-toggle="tab">用户中心</a>
+                                        <a href="#auth" class="btn btn-default btn-block" data-toggle="tab">权限分配</a>
+                                        <a href="#schdule" class="btn btn-default btn-block" data-toggle="tab">任务</a>
+                                        <a href="#scroll" class="btn btn-default btn-block" data-toggle="tab">滚动控制</a>
+                                        <a href="#panel2" class="btn btn-default btn-block" data-toggle="collapse">组织管理</a>
+                                    </div>
+                                    <div class="panel-collapse collapse in" id="panel2">
+                                        <div class="panel-body bg-info">
+                                            <a href="#log" class="btn btn-default btn-block" data-toggle="tab">日志中心</a>
+                                            <a href="#logcenter" class="btn btn-default btn-block" data-toggle="tab">日志</a>
+                                            <a href="#user" class="btn btn-default btn-block" data-toggle="tab">用户中心</a>
+                                            <a href="#auth" class="btn btn-default btn-block" data-toggle="tab">权限分配</a>
+                                            <a href="#schdule" class="btn btn-default btn-block" data-toggle="tab">任务</a>
+                                            <a href="#manager" class="btn btn-default btn-block" data-toggle="tab">组织管理</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="tab-content row">
+                    <div class="tab-pane" id="log">
+                        <div class="panel-default">
+                            <div class="panel-heading">
+                                日志中心
+                            </div>
+                            <div class="panel-body row">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#default" data-toggle="tab">DEFAULT</a>
+                                    </li>
+                                    <li>
+                                        <a href="#sql" data-toggle="tab">SQL</a>
+                                    </li>
+                                    <li>
+                                        <a href="#http" data-toggle="tab">HTTP</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="default">
+                                    这是一些默认的日志
+                                </div>
+                                <div class="tab-pane" id="sql">
+                                    这是sql语句的日志查询显示
+                                </div>
+                                <div class="tab-pane" id="http">
+                                    这是http请求的日志查询显示
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane bg-info" id="logcenter">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                日志
+                            </div>
+                            <div class="panel-body">
+                                <div class="alert alert-success">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>成功！</strong>结果是成功的。
+                                </div>
+                                <div class="alert alert-info">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>信息！</strong>这是信息。
+                                </div>
+                                <div class="alert alert-warning">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>警告！</strong>这是警告。
+                                </div>
+
+                                <div class="alert alert-danger">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>错误！</strong>这是错误的。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane bg-sucesse" id="user">
+                        <div class="panel-default">
+                            <div class="panel-heading">
+                                用户中心
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <a href="javascript:void(0)" class="btn btn-default" data-toggle="modal" data-target="#showInfo">
+                                        弹窗提示
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="auth">
+                        <div class="panel-default">
+
+                            <div class="panel-heading">
+                                权限分配
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="form-horizontal">
+                                    <div class="form-group ">
+                                        <label class="control-label col-sm-2">开始时间：</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="name" placeholder="yyyy/mm/dd HH:MM:SS" value="" />
+                                        </div>
+                                        <label class="control-label col-sm-2">结束时间：</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="name" placeholder="yyyy/mm/dd HH:MM:SS" value="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label class="control-label col-sm-2">姓名：</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="name" placeholder="请输入名称" />
+                                        </div>
+                                        <label class="col-sm-2 control-label" data-toggle="tooltip" data-placement="bottom" title="这是一个生日搜索">生日：</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="name" placeholder="请输入生日" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label class="col-sm-2 control-label">电话：</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="name" placeholder="我的电话" />
+                                        </div>
+                                        <label class="control-label col-sm-2">邮箱：</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="name" placeholder="我的邮箱" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="schdule">
+                        <div class="panel-default">
+                            <div class="panel-heading">
+                                任务
+                            </div>
+                            <div class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="scroll" class="tab-pane">
+                        <div class="navbar navbar-inverse">
+                            <div class="navbar-header">
+                                <a href="#first" class="navbar-brand">测试站</a>
+                            </div>
+                            <ul class="nav navbar-nav">
+                                <li><a href="#first">首页</a></li>
+                                <li><a href="#live">生活</a></li>
+                                <li><a href="#mesh">网络</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="" data-toggle="dropdown">
+                                        下拉菜单
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#menu1">菜单一</a></li>
+                                        <li><a href="#menu2">菜单二</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="overflow-x:hidden;">
+                            <div data-spy="scroll" data-target="#scroll" data-offset="20" style="height:400px;width:110%;overflow-x:hidden; position: relative;">
+                                <div id="first">
+                                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514558453113&di=795d36e58292b000a8554f26689a57bd&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F203fb80e7bec54e7ea2fb5ccb3389b504ec26a25.jpg" alt="Alternate Text" />
+                                </div>
+                                <div id="live">
+                                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514558454701&di=e30b49fef609f56352c6c078931f6002&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Feaf81a4c510fd9f9a71eb4822f2dd42a2934a4d4.jpg" alt="Alternate Text" />
+                                </div>
+                                <div id="mesh">
+                                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514558452491&di=911b31355896fbdef3454a2a887e2e14&imgtype=0&src=http%3A%2F%2Fpic2.ooopic.com%2F11%2F74%2F51%2F60bOOOPICe5_1024.jpg" alt="Alternate Text" />
+                                </div>
+                                <div id="menu1" style="height:200px;background-color:pink">
+                                   这是我的一个小小的菜单
+                                </div>
+                                <div id="menu2" style="height:300px;background-color:black">
+                                   不是图片了
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="panel-default">
+                            <div class="panel-heading">
+                                折叠显示
+                            </div>
+                            <div class="panel-body">
+                                <div class="btn-group">
+                                    <a href="#cols" class="btn btn-default" data-toggle="collapse">一段</a>
+                                    <a href="#cols1" class="btn btn-default" data-toggle="collapse">二段</a>
+                                    <a href="#cols2" class="btn btn-default" data-toggle="collapse">三段</a>
+                                </div>
+                                <div>
+                                    <div id="cols" class="collapse">
+                                        这是段文字
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div id="cols1" class="collapse">
+                                        这是一段文字
+                                    </div>
+                                </div>
+
+                                <div>
+                                    
+                                    <div id="cols2" class="collapse">
+                                        这是一段文字
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="manager">
+                        <div class="panel-default">
+                            <div class="panel-heading">
+                                组织管理
+                            </div>
+                            <div class="panel-body bg-sucesse">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="showInfo">
+        <div class="modal-dialog" style="position:relative;left:auto;top:25%;">
+            <div class="modal-content" >
+                <div class="alert-warning">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            警告提示！！！
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function () { $("[data-toggle='tooltip']").tooltip(); });
+</script>
