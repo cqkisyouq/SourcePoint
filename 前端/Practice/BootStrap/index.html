@@ -3,9 +3,10 @@
 <head>
 	<meta charset="utf-8"> 
 	<title>Bootstrap 学习测试</title>
-	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="JavaScripts/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="JavaScripts/jquery/3.3.1/jquery3.3.1.js"></script>
+    <script src="JavaScripts/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="JavaScripts/SourcePoint.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -82,10 +83,11 @@
                     <div class="tab-pane bg-info" id="logcenter">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                日志
+                                <span>日志</span>
+                                <a href="javascript:Update()">测试监听</a>
                             </div>
-                            <div class="panel-body">
-                                <div class="alert alert-success">
+                            <div class="panel-body" id="logWarn">
+                                <div class="alert alert-success" id="kks">
                                     <a href="#" class="close" data-dismiss="alert">&times;</a>
                                     <strong>成功！</strong>结果是成功的。
                                 </div>
@@ -257,7 +259,15 @@
                                 组织管理
                             </div>
                             <div class="panel-body bg-sucesse">
-                                
+                               <div class="dropdown">
+                                   <a href="#" class="btn btn-default" data-toggle="dropdown">
+                                       我是菜单
+                                       <span class="caret"></span>
+                                   </a>
+                                   <ul class="dropdown-menu">
+                                       <li><a href="#" class="btn btn-default">按钮</a></li>
+                                   </ul>
+                               </div>
                             </div>
                         </div>
                     </div>
@@ -283,4 +293,33 @@
 </html>
 <script>
     $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    $(function () {
+        replace = new $.SourcePoint.Replace({
+            SourceItems: [{ Key: "日", Value: "day" }],
+            MacthRule: /[\u4e00-\u9fa5]/g
+        });
+
+        var configuation = {
+            subtree: true,
+            childList: true,
+            attributes: true,
+            attributeOldValue:true
+        };
+        var lisent = new $.SourcePoint.Monitor(configuation);
+        lisent.Observe($("#logWarn")[0], function (a) {
+            a.forEach(function (item) {
+                var type = item.type;
+                if (type == "attributes") {
+                    //属性变更 
+                } else if (type == "childList") {
+                    //内容改变
+                }
+            })
+        });
+    })
+
+    function Update() {
+        $("#kks strong").attr("myname", "我要变一变" + new Date().getHours())
+        $("#kks strong").text("那个是什么");
+    }
 </script>
