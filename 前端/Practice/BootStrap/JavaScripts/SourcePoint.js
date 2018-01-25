@@ -1,24 +1,24 @@
-
+ï»¿
 (function ($) {
     $.SourcePoint = {};
 
-    //¶Ô½ÚµãÖĞµÄÄÚÈİÌæ»»¸¨Öú
+    //å¯¹èŠ‚ç‚¹ä¸­çš„å†…å®¹æ›¿æ¢è¾…åŠ©
     function Replace(config) {
 
         var replaceConfig = {
             SourceItems: [],
-            //Ìæ»»¹æÔò£¬Ä¬ÈÏÎªÖĞÎÄÌæ»»
+            //æ›¿æ¢è§„åˆ™ï¼Œé»˜è®¤ä¸ºä¸­æ–‡æ›¿æ¢
             MacthRule: MacthRule = /[\u4e00-\u9fa5]+/g
         };
         UseConfiguration(config);
 
-        //´æ´¢ĞèÒª½øĞĞÌæ»»µÄÊı¾İ
+        //å­˜å‚¨éœ€è¦è¿›è¡Œæ›¿æ¢çš„æ•°æ®
         this.SourceItems = replaceConfig.SourceItems;
-        //Ìæ»»¹æÔò£¬Ä¬ÈÏÎªÖĞÎÄÌæ»»
+        //æ›¿æ¢è§„åˆ™ï¼Œé»˜è®¤ä¸ºä¸­æ–‡æ›¿æ¢
         this.MacthRule = replaceConfig.MacthRule;
-        /**¶Ô½ÚµãµÄ html½øĞĞÌæ»»
-          * @param {Node} nodes ½Úµã
-          * @param {bool} match true:²ÉÓÃÕıÔòÆ¥Åä
+        /**å¯¹èŠ‚ç‚¹çš„ htmlè¿›è¡Œæ›¿æ¢
+          * @param {Node} nodes èŠ‚ç‚¹
+          * @param {bool} match true:é‡‡ç”¨æ­£åˆ™åŒ¹é…
           * @returns {void}
           */
         this.HtmlReplace = function (nodes, match) {
@@ -26,18 +26,18 @@
                 $(this).html(ReplaceContext($(this).html(), match));
             });
         };
-        /** ¶Ô½ÚµãµÄ text ½øĞĞÌæ»»
-          * @param {Node} nodes ½Úµã
-          * @param {bool} match true:²ÉÓÃÕıÔòÆ¥Åä
+        /** å¯¹èŠ‚ç‚¹çš„ text è¿›è¡Œæ›¿æ¢
+          * @param {Node} nodes èŠ‚ç‚¹
+          * @param {bool} match true:é‡‡ç”¨æ­£åˆ™åŒ¹é…
           */
         this.TextReplace = function (nodes, match) {
             $(nodes).each(function () {
                 $(this).text(ReplaceContext($(this).text(), match));
             });
         };
-        /** ¶Ô½ÚµãµÄ ÊôĞÔ½øĞĞÌæ»»
-         * @param {Node} nodes ½Úµã
-         * @param {bool} match true:²ÉÓÃÕıÔòÆ¥Åä
+        /** å¯¹èŠ‚ç‚¹çš„ å±æ€§è¿›è¡Œæ›¿æ¢
+         * @param {Node} nodes èŠ‚ç‚¹
+         * @param {bool} match true:é‡‡ç”¨æ­£åˆ™åŒ¹é…
          */
         this.AttributeReplace = function (str, match) {
             $("[" + str + "]").each(function () {
@@ -46,9 +46,9 @@
             });
         };
 
-        /** ¶Ô½ÚµãÖĞµÄÖµ½øĞĞÌæ»»
-         * @param {Node} nodes ½Úµã
-         * @param {bool} match true:²ÉÓÃÕıÔòÆ¥Åä
+        /** å¯¹èŠ‚ç‚¹ä¸­çš„å€¼è¿›è¡Œæ›¿æ¢
+         * @param {Node} nodes èŠ‚ç‚¹
+         * @param {bool} match true:é‡‡ç”¨æ­£åˆ™åŒ¹é…
          */
         this.ValueReplace = function (nodes, match) {
             $(nodes).each(function () {
@@ -60,10 +60,10 @@
         this.UpdateItems = AddItems;
 
         /**
-         * @description Ìæ»»ÄÚÈİ
-         * @param {string} strHtml ÄÚÈİ
-         * @param {bool} match true:Ê¹ÓÃÕıÔòÆ¥Åä
-         * @returns {string} strHtml Ìæ»»ºóµÄ½á¹û
+         * @description æ›¿æ¢å†…å®¹
+         * @param {string} strHtml å†…å®¹
+         * @param {bool} match true:ä½¿ç”¨æ­£åˆ™åŒ¹é…
+         * @returns {string} strHtml æ›¿æ¢åçš„ç»“æœ
          */
         function ReplaceContext(strHtml, match) {
             strHtml = strHtml.trim();
@@ -90,8 +90,8 @@
         };
 
         /**
-         * @description Ê¹ÓÃÅäÖÃ
-         * @param {Object} config ÅäÖÃĞÅÏ¢
+         * @description ä½¿ç”¨é…ç½®
+         * @param {Object} config é…ç½®ä¿¡æ¯
          */
         function UseConfiguration(config) {
             $.extend(replaceConfig, config);
@@ -99,14 +99,14 @@
         }
 
         /*
-         * @description Éú³É key
+         * @description ç”Ÿæˆ key
          */
         function CreateItemKeys() {
             replaceConfig.SourceKeys = replaceConfig.SourceItems.map(function (v) { return v.Key; });
         }
 
         /**
-         * @description Ìí¼ÓÌæ»»µÄ key
+         * @description æ·»åŠ æ›¿æ¢çš„ key
          * @param {Array} objs 
          */
         function AddItems(objs) {
@@ -117,48 +117,48 @@
     };
 
     /*
-     * @description ¶Ô½Úµã½øĞĞ ¼àÌı
-     * @param {MutationObserverInit} ÉèÖÃĞèÒª¼àÌıµÄ¶ÔÏó
+     * @description å¯¹èŠ‚ç‚¹è¿›è¡Œ ç›‘å¬
+     * @param {MutationObserverInit} è®¾ç½®éœ€è¦ç›‘å¬çš„å¯¹è±¡
      */
     function Monitor(options) {
 
         var configuation = {
             /*
-             * Èç¹ûĞèÒª¹Û²ìÄ¿±ê½ÚµãµÄ×Ó½Úµã(ĞÂÔöÁËÄ³¸ö×Ó½Úµã,»òÕßÒÆ³ıÁËÄ³¸ö×Ó½Úµã),ÔòÉèÖÃÎªtrue.
+             * å¦‚æœéœ€è¦è§‚å¯Ÿç›®æ ‡èŠ‚ç‚¹çš„å­èŠ‚ç‚¹(æ–°å¢äº†æŸä¸ªå­èŠ‚ç‚¹,æˆ–è€…ç§»é™¤äº†æŸä¸ªå­èŠ‚ç‚¹),åˆ™è®¾ç½®ä¸ºtrue.
              */
             childList: true,
             /*
-             *Èç¹ûĞèÒª¹Û²ìÄ¿±ê½ÚµãµÄÊôĞÔ½Úµã(ĞÂÔö»òÉ¾³ıÁËÄ³¸öÊôĞÔ,ÒÔ¼°Ä³¸öÊôĞÔµÄÊôĞÔÖµ·¢ÉúÁË±ä»¯),ÔòÉèÖÃÎªtrue.
+             *å¦‚æœéœ€è¦è§‚å¯Ÿç›®æ ‡èŠ‚ç‚¹çš„å±æ€§èŠ‚ç‚¹(æ–°å¢æˆ–åˆ é™¤äº†æŸä¸ªå±æ€§,ä»¥åŠæŸä¸ªå±æ€§çš„å±æ€§å€¼å‘ç”Ÿäº†å˜åŒ–),åˆ™è®¾ç½®ä¸ºtrue.
              */
             attributes: true,
             /*
-             * Èç¹ûÄ¿±ê½ÚµãÎªcharacterData½Úµã(Ò»ÖÖ³éÏó½Ó¿Ú,¾ßÌå¿ÉÒÔÎªÎÄ±¾½Úµã,×¢ÊÍ½Úµã,ÒÔ¼°´¦ÀíÖ¸Áî½Úµã)Ê±,
-             * Ò²Òª¹Û²ì¸Ã½ÚµãµÄÎÄ±¾ÄÚÈİÊÇ·ñ·¢Éú±ä»¯,
-             * ÔòÉèÖÃÎªtrue.
+             * å¦‚æœç›®æ ‡èŠ‚ç‚¹ä¸ºcharacterDataèŠ‚ç‚¹(ä¸€ç§æŠ½è±¡æ¥å£,å…·ä½“å¯ä»¥ä¸ºæ–‡æœ¬èŠ‚ç‚¹,æ³¨é‡ŠèŠ‚ç‚¹,ä»¥åŠå¤„ç†æŒ‡ä»¤èŠ‚ç‚¹)æ—¶,
+             * ä¹Ÿè¦è§‚å¯Ÿè¯¥èŠ‚ç‚¹çš„æ–‡æœ¬å†…å®¹æ˜¯å¦å‘ç”Ÿå˜åŒ–,
+             * åˆ™è®¾ç½®ä¸ºtrue.
              */
             characterData: true,
             /*
-             * ³ıÁËÄ¿±ê½Úµã,
-             * Èç¹û»¹ĞèÒª¹Û²ìÄ¿±ê½ÚµãµÄËùÓĞºó´ú½Úµã(¹Û²ìÄ¿±ê½ÚµãËù°üº¬µÄÕû¿ÃDOMÊ÷ÉÏµÄÉÏÊöÈıÖÖ½Úµã±ä»¯),
-             * ÔòÉèÖÃÎªtrue.
+             * é™¤äº†ç›®æ ‡èŠ‚ç‚¹,
+             * å¦‚æœè¿˜éœ€è¦è§‚å¯Ÿç›®æ ‡èŠ‚ç‚¹çš„æ‰€æœ‰åä»£èŠ‚ç‚¹(è§‚å¯Ÿç›®æ ‡èŠ‚ç‚¹æ‰€åŒ…å«çš„æ•´æ£µDOMæ ‘ä¸Šçš„ä¸Šè¿°ä¸‰ç§èŠ‚ç‚¹å˜åŒ–),
+             * åˆ™è®¾ç½®ä¸ºtrue.
              */
             subtree: true,
             /*
-             * ÔÚattributesÊôĞÔÒÑ¾­ÉèÎªtrueµÄÇ°ÌáÏÂ,
-             * Èç¹ûĞèÒª½«·¢Éú±ä»¯µÄÊôĞÔ½ÚµãÖ®Ç°µÄÊôĞÔÖµ¼ÇÂ¼ÏÂÀ´(¼ÇÂ¼µ½ÏÂÃæMutationRecord¶ÔÏóµÄoldValueÊôĞÔÖĞ),
-             * ÔòÉèÖÃÎªtrue.
+             * åœ¨attributeså±æ€§å·²ç»è®¾ä¸ºtrueçš„å‰æä¸‹,
+             * å¦‚æœéœ€è¦å°†å‘ç”Ÿå˜åŒ–çš„å±æ€§èŠ‚ç‚¹ä¹‹å‰çš„å±æ€§å€¼è®°å½•ä¸‹æ¥(è®°å½•åˆ°ä¸‹é¢MutationRecordå¯¹è±¡çš„oldValueå±æ€§ä¸­),
+             * åˆ™è®¾ç½®ä¸ºtrue.
              */
             attributeOldValue: true,
             /*
-             * ÔÚcharacterDataÊôĞÔÒÑ¾­ÉèÎªtrueµÄÇ°ÌáÏÂ,
-             * Èç¹ûĞèÒª½«·¢Éú±ä»¯µÄcharacterData½ÚµãÖ®Ç°µÄÎÄ±¾ÄÚÈİ¼ÇÂ¼ÏÂÀ´(¼ÇÂ¼µ½ÏÂÃæMutationRecord¶ÔÏóµÄoldValueÊôĞÔÖĞ),
-             * ÔòÉèÖÃÎªtrue.
+             * åœ¨characterDataå±æ€§å·²ç»è®¾ä¸ºtrueçš„å‰æä¸‹,
+             * å¦‚æœéœ€è¦å°†å‘ç”Ÿå˜åŒ–çš„characterDataèŠ‚ç‚¹ä¹‹å‰çš„æ–‡æœ¬å†…å®¹è®°å½•ä¸‹æ¥(è®°å½•åˆ°ä¸‹é¢MutationRecordå¯¹è±¡çš„oldValueå±æ€§ä¸­),
+             * åˆ™è®¾ç½®ä¸ºtrue.
              */
             characterDataOldValue: true,
             /*
-             * Ò»¸öÊôĞÔÃûÊı×é(²»ĞèÒªÖ¸¶¨ÃüÃû¿Õ¼ä),
-             * Ö»ÓĞ¸ÃÊı×éÖĞ°üº¬µÄÊôĞÔÃû·¢Éú±ä»¯Ê±²Å»á±»¹Û²ìµ½,
-             * ÆäËûÃû³ÆµÄÊôĞÔ·¢Éú±ä»¯ºó»á±»ºöÂÔ.
+             * ä¸€ä¸ªå±æ€§åæ•°ç»„(ä¸éœ€è¦æŒ‡å®šå‘½åç©ºé—´),
+             * åªæœ‰è¯¥æ•°ç»„ä¸­åŒ…å«çš„å±æ€§åå‘ç”Ÿå˜åŒ–æ—¶æ‰ä¼šè¢«è§‚å¯Ÿåˆ°,
+             * å…¶ä»–åç§°çš„å±æ€§å‘ç”Ÿå˜åŒ–åä¼šè¢«å¿½ç•¥.
              */
             attributeFilter:[]
         };
@@ -166,13 +166,13 @@
         configuation = options ? $.extend({}, options) : configuation;
         console.debug(configuation)
         /** 
-         * @description ¼àÌı½Úµã±ä»¯
-         * @param {Node} node ½Úµã
-         * @param {function(records,own)} callback ¼àÌıµ½±ä»¯ ºóµÄ»Øµ÷
+         * @description ç›‘å¬èŠ‚ç‚¹å˜åŒ–
+         * @param {Node} node èŠ‚ç‚¹
+         * @param {function(records,own)} callback ç›‘å¬åˆ°å˜åŒ– åçš„å›è°ƒ
          * @param {MutationObserverInit} options
-         * records£º°üº¬ÁËÈô¸É¸öMutationRecord¶ÔÏóµÄÊı×é
-         * own£ºÕâ¸ö¹Û²ìÕß¶ÔÏó±¾Éí
-         * @returns {MutationObserver} observice ¹Û²ìÕß¶ÔÏó
+         * recordsï¼šåŒ…å«äº†è‹¥å¹²ä¸ªMutationRecordå¯¹è±¡çš„æ•°ç»„
+         * ownï¼šè¿™ä¸ªè§‚å¯Ÿè€…å¯¹è±¡æœ¬èº«
+         * @returns {MutationObserver} observice è§‚å¯Ÿè€…å¯¹è±¡
          */
         this.Observe = function (node, callback, options) {
             if (typeof callback != "function") {
@@ -194,7 +194,7 @@
 
     $.SourcePoint.Replace = Replace;
     /**
-     * @property {Object}  Monitoring ¶Ô dom ½Úµã½øĞĞ ¼àÌı Ö»ÄÜÊ¹ÓÃ domÀàĞÍ
+     * @property {Object}  Monitoring å¯¹ dom èŠ‚ç‚¹è¿›è¡Œ ç›‘å¬ åªèƒ½ä½¿ç”¨ domç±»å‹
      */
     $.SourcePoint.Monitor = Monitor;
 
