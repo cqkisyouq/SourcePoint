@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\View2\View2.csproj" />
+    <ProjectReference Include="..\Views\Views.csproj" />
+  </ItemGroup>
+
+
+  <Target Name="CopyPrecompiledViewAssets" BeforeTargets="Publish">
+    <ItemGroup>
+      <!--重新编译引用的目标项目 生成对应的预编译dll 复制到发布目录里
+      ClassLibraryProjectPath->指定要编译的项目工程文件
+      PrecompiledArtifacts->指定需要复制的dll 到发布文件目录
+      注意：当需要进行多个项目编译时  而 Views又分布在不同项目中  同个目录同个文件只能出现一次不然在运行后报错
+      在需要编译的项目中指定 MvcRazorOutputPath 路径 ；PrecompiledArtifacts 的路径就是该路径
+      -->
+      <ClassLibraryProjectPath Include="..\View2\View2.csproj" />
+      <ClassLibraryProjectPath Include="..\Views\Views.csproj" />
+      <PrecompiledArtifacts Include="%(ClassLibraryProjectPath.RelativeDir)obj\precompiled\$(TargetFramework)\*.dll" />
+    </ItemGroup>
+    <MSBuild Projects="@(ClassLibraryProjectPath);" Targets="MvcRazorPrecompile" Properties="TargetFramework=$(TargetFramework);Configuration=$(Configuration)" />
+    <Copy SourceFiles="@(PrecompiledArtifacts)" DestinationFolder="$(PublishDir)" />
+  </Target>
+</Project>

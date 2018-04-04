@@ -61,6 +61,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{49AE8480-9A8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Infrastructure.Extensions.MVCExtension", "Infrastructure\Extensions\MVCExtension\SourcePoint.Infrastructure.Extensions.MVCExtension\SourcePoint.Infrastructure.Extensions.MVCExtension.csproj", "{33225A4F-027E-483A-A592-452766699C16}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2B024754-E0B4-4CA4-BF57-685C57185469}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
