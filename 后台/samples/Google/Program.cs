@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Identity.API.Test
+namespace Google
 {
     public class Program
     {
@@ -19,7 +19,7 @@ namespace Identity.API.Test
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseUrls("http://*:8089")
+                .UseUrls("http://*:8020")
                 .UseStartup<Startup>()
                 .Build();
     }

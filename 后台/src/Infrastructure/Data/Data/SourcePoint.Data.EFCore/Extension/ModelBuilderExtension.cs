@@ -18,9 +18,9 @@ namespace SourcePoint.Data.EFCore.Extension
             _Mappings.ForEach(mapping =>
             {
                 var item = Activator.CreateInstance(mapping);
-                var entityType = (item as IEntityConfigruationMap).type;
-                var method = Configuration.MakeGenericMethod(entityType);
-                Configuration.MakeGenericMethod(entityType).Invoke(null, new object[] { modelBuilder, item });
+                var entityType = (item as IEntityConfigruationMap)?.type;
+                //var method = Configuration.MakeGenericMethod(entityType);
+                if(entityType!=null) Configuration.MakeGenericMethod(entityType).Invoke(null, new object[] { modelBuilder, item });
             });
         }
 
