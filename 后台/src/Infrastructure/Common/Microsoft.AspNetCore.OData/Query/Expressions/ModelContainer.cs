@@ -7,6 +7,7 @@ using Microsoft.OData.Edm;
 namespace Microsoft.AspNetCore.OData.Query.Expressions
 {
     using System;
+    using System.Linq;
 
     /// <summary>
     /// EntityFramework does not let you inject non primitive constant values (like IEdmModel) in Select queries. Primitives like strings and guids can be
@@ -28,6 +29,23 @@ namespace Microsoft.AspNetCore.OData.Query.Expressions
         public static IEdmModel GetModel(string id)
         {
             return _reverseMap[id];
+        }
+
+        public static IEdmModel GetModel(Type type)
+        {
+            IEdmModel model=null;
+            var name = type.Name;
+            foreach (var item in _reverseMap)
+            {
+               var itemModel= item.Value.SchemaElements.FirstOrDefault(x => x.SchemaElementKind == EdmSchemaElementKind.TypeDefinition && string.Equals(name, x.Name, StringComparison.CurrentCultureIgnoreCase));
+                if (itemModel != null)
+                {
+                    model = item.Value;
+                    break;
+                }
+            }
+
+            return model;
         }
     }
 }

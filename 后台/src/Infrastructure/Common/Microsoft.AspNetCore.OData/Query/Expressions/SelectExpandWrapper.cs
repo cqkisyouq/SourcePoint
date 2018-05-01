@@ -89,8 +89,12 @@ namespace Microsoft.AspNetCore.OData.Query.Expressions
             // fall back to the instance.
             if (Instance != null)
             {
+                var type = Instance.GetType();
+                var edmodel = ModelContainer.GetModel(type);
+                var edrefect = edmodel.GetEdmTypeReference(type);
+
                 _typedEdmEntityObject = _typedEdmEntityObject ??
-                    new TypedEdmEntityObject(Instance, GetEdmType() as IEdmEntityTypeReference, GetModel());
+                    new TypedEdmEntityObject(Instance, /*GetEdmType()*/ edrefect as IEdmEntityTypeReference, edmodel /*GetModel()*/);
 
                 return _typedEdmEntityObject.TryGetPropertyValue(propertyName, out value);
             }

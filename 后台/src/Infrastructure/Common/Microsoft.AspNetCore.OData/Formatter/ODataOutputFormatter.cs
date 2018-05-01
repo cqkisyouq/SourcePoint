@@ -1,24 +1,26 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.OData.Common;
+using Microsoft.AspNetCore.OData.Extensions;
+using Microsoft.AspNetCore.OData.Formatter.Serialization;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
+using Microsoft.OData;
 using Microsoft.OData.Edm;
+using Microsoft.OData.UriParser;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.OData.Common;
-using Microsoft.AspNetCore.OData.Extensions;
-using Microsoft.AspNetCore.OData.Formatter.Serialization;
-using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OData;
-using Microsoft.OData.UriParser;
 using ODataPath = Microsoft.AspNetCore.OData.Routing.ODataPath;
 
 namespace Microsoft.AspNetCore.OData.Formatter
@@ -125,6 +127,29 @@ namespace Microsoft.AspNetCore.OData.Formatter
                 //Path = (path == null || IsOperationPath(path)) ? null : path.ODLPath,
             };
 
+        #region 为OData添加缓存  使用的EF二级缓存 这里是先从缓存获取数据
+            //var queryResult = graph as IQueryable;
+            //PageResult<object> target = null;
+            //if (queryResult == null)
+            //{
+            //    target = graph as PageResult<object>;
+            //    if (target != null) queryResult = target.Items.AsQueryable();
+            //}
+            //var isReadCache = queryResult != null || target != null;
+
+            //var cacheValue = isReadCache?queryResult.CacheResult(context.HttpContext.RequestServices):null;
+
+            //if (isReadCache&&target != null && cacheValue != null)
+            //{
+            //    var pageResult = cacheValue as IEnumerable<object>;
+            //    //long? count = target.Count.HasValue ? (long?)pageResult.LongCount() : null;
+            //    cacheValue = new PageResult<object>(pageResult, null, target.Count);
+            //}
+
+            //if (isReadCache&&cacheValue != null) graph = cacheValue;
+
+        #endregion
+
             using (ODataMessageWriter messageWriter = new ODataMessageWriter(responseMessage, writerSettings, model))
             {
                 ODataSerializerContext writeContext = new ODataSerializerContext()
@@ -139,8 +164,22 @@ namespace Microsoft.AspNetCore.OData.Formatter
                     MetadataLevel = ODataMediaTypes.GetMetadataLevel(MediaTypeHeaderValue.Parse(context.ContentType.Value)),
                     SelectExpandClause = request.ODataFeature().SelectExpandClause,
                 };
-
+                
                 serializer.WriteObject(graph, type, messageWriter, writeContext);
+
+            #region 这里是往缓存中 存储数据
+                //if (isReadCache&&cacheValue == null)
+                //{
+                //    writeContext.Context.Response.Body.Position = 0;
+                //    StreamReader reder = new StreamReader(writeContext.Context.Response.Body);
+                //    var bodyStr = reder.ReadToEnd();
+                //    JObject.Parse(bodyStr).TryGetValue("value",out JToken values);
+                //    cacheValue = values.ToObject(type.MarkListType());
+
+                //    queryResult.CacheQuerable(cacheValue, writeContext.Context.RequestServices);
+                //}
+            #endregion
+
             }
         }
 

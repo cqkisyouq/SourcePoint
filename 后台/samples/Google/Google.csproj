@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Authenticator\GoogleAuthenticator\SourcePoint.Infrastructure.Authenticator.GoogleAuthenticator.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Authenticator\GoogleAuthenticator\SourcePoint.Infrastructure.Authenticator.GoogleAuthenticator.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Extensions\SwaggerExtension\SourcePoint.Infrastructure.Extensions.SwaggerExtension.csproj" />
   </ItemGroup>
 </Project>

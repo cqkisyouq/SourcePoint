@@ -29,9 +29,11 @@ namespace Microsoft.AspNetCore.OData
             }
 
             var request = context.HttpContext.Request;
-            if (request.HasQueryOptions())
+            var hasQuery = request.HasQueryOptions();
+            var result = context.Result as ObjectResult;
+
+            if (hasQuery)
             {
-                var result = context.Result as ObjectResult;
                 if (result == null)
                 {
                     throw Error.Argument("context", SRResources.QueryingRequiresObjectContent, context.Result.GetType().FullName);
@@ -54,7 +56,11 @@ namespace Microsoft.AspNetCore.OData
                     var queryOptions = new ODataQueryOptions(queryContext, request);
 
                     long? count = null;
+                    //var query = ApplyQueryOptions(result.Value, queryOptions, context.ActionDescriptor);
+                    //var cache = query as IQueryable;
+                    
                     var items = ApplyQueryOptions(result.Value, queryOptions, context.ActionDescriptor) as IEnumerable<object>;
+
                     if (queryOptions.Count)
                     {
                         count = Count(result.Value, queryOptions, context.ActionDescriptor);
@@ -67,6 +73,11 @@ namespace Microsoft.AspNetCore.OData
                     }
                 }
             }
+        }
+
+        public override void OnResultExecuted(ResultExecutedContext context)
+        {
+            base.OnResultExecuted(context);
         }
 
         public virtual object ApplyQueryOptions(object value, ODataQueryOptions options, ActionDescriptor descriptor)

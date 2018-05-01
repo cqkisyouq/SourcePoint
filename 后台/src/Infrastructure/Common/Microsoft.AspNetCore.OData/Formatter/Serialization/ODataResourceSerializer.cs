@@ -139,7 +139,7 @@ namespace Microsoft.AspNetCore.OData.Formatter.Serialization
         {
             Contract.Assert(writeContext != null);
 
-            IEdmStructuredTypeReference structuredType = GetResourceType(graph, writeContext);
+            IEdmStructuredTypeReference structuredType = expectedType.AsStructured();// GetResourceType(graph, writeContext);
             ResourceContext resourceContext = new ResourceContext(writeContext, structuredType, graph);
 
             SelectExpandNode selectExpandNode = CreateSelectExpandNode(resourceContext);

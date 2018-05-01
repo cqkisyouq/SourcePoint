@@ -106,7 +106,14 @@ namespace Microsoft.AspNetCore.OData
     {
         private T _Value;
         private Type _Type = typeof(T);
+        /// <summary>
+        /// 改变的属性数据
+        /// </summary>
         public Dictionary<string, object> ChangeProperty = new Dictionary<string, object>();
+        /// <summary>
+        /// 拥有的属性
+        /// </summary>
+        public List<string> Propertys = new List<string>();
         public MethodInfo IsConvertDefault = typeof(Delta<T>).GetMethod(nameof(IsDefault));
         public Delta(T value)
         {
@@ -142,9 +149,7 @@ namespace Microsoft.AspNetCore.OData
         /// <returns></returns>
         public List<string> GetProperties(HttpContext httpContent)
         {
-            List<string> list = new List<string>();
-
-            if (httpContent == null) return list;
+            if (httpContent == null||this.Propertys.Any()) return this.Propertys;
 
             httpContent.Request.Body.Position = 0;
             StreamReader reder = new StreamReader(httpContent.Request.Body);
@@ -152,20 +157,20 @@ namespace Microsoft.AspNetCore.OData
             var jsonObj = JObject.Parse(bodyStr);
             foreach (var item in jsonObj)
             {
-                list.Add(item.Key);
+                this.Propertys.Add(item.Key);
             }
-
-            return list;
+            return this.Propertys;
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            ChangeProperty.Clear();
+            Propertys.Clear();
         }
 
         public IEnumerable<string> GetChangedPropertyNames()
         {
-            throw new NotImplementedException();
+            return ChangeProperty.Keys.ToList();
         }
 
         public IEnumerable<string> GetUnchangedPropertyNames()
@@ -187,8 +192,16 @@ namespace Microsoft.AspNetCore.OData
         {
             throw new NotImplementedException();
         }
-
-
+        /// <summary>
+        /// 在原始数据中是否有此属性
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="stringComparison"></param>
+        /// <returns></returns>
+        public bool HasSourceProperty(string name, StringComparison stringComparison= StringComparison.OrdinalIgnoreCase)
+        {
+           return Propertys.Any(x => x.Equals(name, stringComparison));
+        }
 
         private void ChangeProperties(object obj,HttpContext httpContext=null)
         {
@@ -221,7 +234,14 @@ namespace Microsoft.AspNetCore.OData
 
                 ChangeProperty.Add(targetProperty.Name, targetProperty.GetValue(obj));
 
-                targetProperty.SetValue(obj, value);
+                try
+                {
+                    targetProperty.SetValue(obj, value);
+                }
+                catch (Exception ex)
+                {
+                    
+                }
             }
         }
     }

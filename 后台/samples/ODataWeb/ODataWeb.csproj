@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\ODataWeb.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Infrastructure\Common\Microsoft.AspNetCore.OData\Microsoft.AspNetCore.OData.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Extensions\MVCExtension\SourcePoint.Infrastructure.Extensions.MVCExtension\SourcePoint.Infrastructure.Extensions.MVCExtension.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Extensions\ODataExtension\SourcePoint.Infrastructure.Extensions.ODataExtension.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Extensions\SwaggerExtension\SourcePoint.Infrastructure.Extensions.SwaggerExtension.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,16 +1,17 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using Microsoft.AspNetCore.OData.Common;
 using Microsoft.OData.Edm;
 using Newtonsoft.Json;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
-using Microsoft.AspNetCore.OData.Common;
 
 namespace Microsoft.AspNetCore.OData.Query.Expressions
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Represents a custom <see cref="JsonConverter"/> to serialize <see cref="SelectExpandWrapper{TElement}"/> instances to JSON.
@@ -30,12 +31,23 @@ namespace Microsoft.AspNetCore.OData.Query.Expressions
             return objectType.IsAssignableFrom(typeof(ISelectExpandWrapper));
         }
 
+        private static Type _ListType=typeof(List<int>).GetGenericTypeDefinition();
+
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            Contract.Assert(false, "SelectExpandWrapper is internal and should never be deserialized into.");
-            throw new NotImplementedException();
-        }
+            //Contract.Assert(false, "SelectExpandWrapper is internal and should never be deserialized into.");
+            //   throw new NotImplementedException();
+           var Instance =Activator.CreateInstance(objectType);
+          
+            var newResult=Activator.CreateInstance(objectType.GenericTypeArguments[0]);
+            
+            serializer.Populate(reader, newResult);
 
+            Instance.GetType().GetProperty("Instance").SetValue(Instance, newResult);
+
+            return Instance;
+        }
+        public IEdmModel edmModel { get; set; }
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             ISelectExpandWrapper selectExpandWrapper = value as ISelectExpandWrapper;

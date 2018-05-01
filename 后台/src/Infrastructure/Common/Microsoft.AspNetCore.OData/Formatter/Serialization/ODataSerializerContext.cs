@@ -161,7 +161,7 @@ namespace Microsoft.AspNetCore.OData.Formatter.Serialization
             IEdmTypeReference edmType;
 
             IEdmObject edmObject = instance as IEdmObject;
-            if (edmObject != null)
+            if (edmObject != null&& instance.GetType().GetProperty("ModelID").GetValue(instance)!=null)
             {
                 edmType = edmObject.GetEdmType();
                 if (edmType == null)
@@ -176,7 +176,8 @@ namespace Microsoft.AspNetCore.OData.Formatter.Serialization
                 {
                     throw Error.InvalidOperation(SRResources.RequestMustHaveModel);
                 }
-
+                var cacheType=instance.GetType().GetProperty("Items");
+                type =cacheType!=null?cacheType.GetValue(instance).GetType():type;
                 _typeMappingCache = _typeMappingCache ?? Model.GetTypeMappingCache();
                 edmType = _typeMappingCache.GetEdmType(type, Model);
 

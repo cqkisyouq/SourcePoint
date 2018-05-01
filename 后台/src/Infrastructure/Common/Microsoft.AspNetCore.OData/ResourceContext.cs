@@ -213,7 +213,8 @@ namespace Microsoft.AspNetCore.OData
             }
             else
             {
-                IEdmTypeReference edmType = EdmObject.GetEdmType();
+                var type = EdmObject.GetType();
+                IEdmTypeReference edmType = EdmModel.GetEdmTypeReference(type);//EdmObject.GetEdmType();
                 if (edmType == null)
                 {
                     // Provide general guidance in the message. typeof(IEdmTypeReference).Name would be too specific.
