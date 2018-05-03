@@ -18,7 +18,11 @@ namespace ODataWeb
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+                 WebHost.CreateDefaultBuilder(args)
+                .UseDefaultServiceProvider(x=> { })
+                //如果不使用 new WebHostBuilder()  || UseDefaultServiceProvider OData会报错 并且 没有请求日志
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseUrls("http://*:8023")
                 .UseStartup<Startup>()
                 .Build();

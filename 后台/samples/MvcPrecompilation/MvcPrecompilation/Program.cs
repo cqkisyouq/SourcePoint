@@ -19,6 +19,10 @@ namespace MvcPrecompilation
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseDefaultServiceProvider(x => { })
+                //如果不使用 new WebHostBuilder()  || UseDefaultServiceProvider OData 会报错 并且 没有请求日志
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseUrls("http://*:8021")
                 .UseStartup<Startup>()
                 .Build();

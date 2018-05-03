@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Infrastructure\Authenticator\GoogleAuthenticator\SourcePoint.Infrastructure.Authenticator.GoogleAuthenticator.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Extensions\MVCExtension\SourcePoint.Infrastructure.Extensions.MVCExtension\SourcePoint.Infrastructure.Extensions.MVCExtension.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Extensions\ODataExtension\SourcePoint.Infrastructure.Extensions.ODataExtension.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Extensions\SwaggerExtension\SourcePoint.Infrastructure.Extensions.SwaggerExtension.csproj" />
   </ItemGroup>
 </Project>

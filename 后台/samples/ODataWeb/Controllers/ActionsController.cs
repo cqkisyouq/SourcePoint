@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.OData.Routing;
 using ODataWeb.Models;
-using SourcePoint.Infrastructure.Extensions.ODataExtension.Attributes;
 using SourcePoint.Infrastructure.Extensions.MVCExtension.ControllerExtensions;
+using SourcePoint.Infrastructure.Extensions.ODataExtension.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
 
 namespace ODataWeb.Controllers
 {
-    [ODataRoute("Values")]
+    [ODataRoute("Actions")]
     [OdataEntity(typeof(ActionOutPut))]
     [Route("[controller]/[action]")]
     [Produces("application/json")]
-    public class ValuesController : Controller
+    public class ActionsController : Controller
     {
         /// <summary>
         /// 获取操作定义数据

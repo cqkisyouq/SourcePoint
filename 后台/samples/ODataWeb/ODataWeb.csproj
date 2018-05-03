@@ -13,15 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Infrastructure\Common\Microsoft.AspNetCore.OData\Microsoft.AspNetCore.OData.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Extensions\MVCExtension\SourcePoint.Infrastructure.Extensions.MVCExtension\SourcePoint.Infrastructure.Extensions.MVCExtension.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Extensions\ODataExtension\SourcePoint.Infrastructure.Extensions.ODataExtension.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Extensions\SwaggerExtension\SourcePoint.Infrastructure.Extensions.SwaggerExtension.csproj" />

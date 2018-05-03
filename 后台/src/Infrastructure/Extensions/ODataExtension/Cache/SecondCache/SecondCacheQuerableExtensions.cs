@@ -12,24 +12,30 @@ namespace SourcePoint.Infrastructure.Extensions.ODataExtension.Cache
 {
     public static class SecondCacheQuerableExtensions
     {
-        private static MethodInfo _CacheQuerableMethod = typeof(SecondCacheQuerableExtensions).GetMethod(nameof(CacheHandle));
-        private static MethodInfo _CacheValue = typeof(SecondCacheQuerableExtensions).GetMethod(nameof(GetCacheValue));
+        private static MethodInfo _CacheQuerableMethod = typeof(SecondCacheQuerableExtensions).GetMethod(nameof(ODataCacheHandle));
+        private static MethodInfo _CacheValue = typeof(SecondCacheQuerableExtensions).GetMethod(nameof(ODataGetCacheValue));
         private static MethodInfo _CreateListType = typeof(SecondCacheQuerableExtensions).GetMethod(nameof(CreateListType));
 
         private static Dictionary<Type, MethodInfo> _MethodInfoPool = new Dictionary<Type, MethodInfo>();
-        public static void CacheQuerable(this IQueryable queryable, object value, IServiceProvider serviceProvider)
+        public static void ODataCacheQuerable(this IQueryable queryable, object value, IServiceProvider serviceProvider)
         {
             var cache = _CacheQuerableMethod.MakeGenericMethod(queryable.ElementType);
             queryable = cache.Invoke(null, new object[] { queryable, value, serviceProvider }) as IQueryable;
         }
-        public static object CacheResult(this IQueryable queryable, IServiceProvider cacheServiceProvider)
+       /// <summary>
+       /// 从缓存中获取数据
+       /// </summary>
+       /// <param name="queryable"></param>
+       /// <param name="cacheServiceProvider"></param>
+       /// <returns></returns>
+        public static object ODataCacheResult(this IQueryable queryable, IServiceProvider cacheServiceProvider)
         {
             var cache = _CacheValue.MakeGenericMethod(queryable.ElementType);
             var result = cache.Invoke(null, new object[] { queryable, cacheServiceProvider });
             return result;
         }
 
-        public static object GetCacheValue<T>(IQueryable<T> queryable, IServiceProvider serviceProvider)
+        public static object ODataGetCacheValue<T>(IQueryable<T> queryable, IServiceProvider serviceProvider)
         {
             var cacheProvider = serviceProvider.GetService<IEFCacheKeyProvider>();
             var cacheService = serviceProvider.GetService<IEFCacheServiceProvider>();
@@ -39,7 +45,7 @@ namespace SourcePoint.Infrastructure.Extensions.ODataExtension.Cache
             return result;
         }
 
-        public static void CacheHandle<T>(IQueryable<T> query, object value, IServiceProvider serviceProvider)
+        public static void ODataCacheHandle<T>(IQueryable<T> query, object value, IServiceProvider serviceProvider)
         {
             var cacheKeyProvider = serviceProvider.GetService<IEFCacheKeyProvider>();
             var cacheServiceProvider = serviceProvider.GetService<IEFCacheServiceProvider>();
@@ -47,7 +53,7 @@ namespace SourcePoint.Infrastructure.Extensions.ODataExtension.Cache
             cacheServiceProvider.InsertValue(cacheKey.KeyHash, value, cacheKey.CacheDependencies);
         }
 
-        public static Type MarkListType(this Type type)
+        private static Type MarkListType(this Type type)
         {
             type = type.IsGenericType ? type.GenericTypeArguments[0] : type;
 
@@ -57,7 +63,7 @@ namespace SourcePoint.Infrastructure.Extensions.ODataExtension.Cache
             type = _CreateListType.MakeGenericMethod(type).Invoke(null, null) as Type;
             return type;
         }
-        public static Type CreateListType<T>()
+        private static Type CreateListType<T>()
         {
             return typeof(List<T>);
         }

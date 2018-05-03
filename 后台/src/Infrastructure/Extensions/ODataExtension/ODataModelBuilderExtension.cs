@@ -28,16 +28,18 @@ namespace SourcePoint.Infrastructure.Extensions.ODataExtension.Extensions
             var controllers = actions.OfType<ControllerActionDescriptor>().ToList();
             var controllerGroup = controllers.GroupBy(n => n.ControllerName);
             var type = typeof(OdataEntityAttribute);
-            foreach (var controller in controllerGroup)
+            foreach (var controllerActions in controllerGroup)
             {
-                var entityAttribute = controller.First().ControllerTypeInfo.GetCustomAttributes<OdataEntityAttribute>();
+                var  oneAction= controllerActions.First();
+                var entityAttribute = oneAction.ControllerTypeInfo.GetCustomAttributes<OdataEntityAttribute>();
+               
                 foreach (var item in entityAttribute)
                 {
                     var entityType = item.GetEntitysType();
                     var entitySetGenericMethod = entitySetMethod.MakeGenericMethod(entityType);
-                    var entitySetConfiguration = entitySetGenericMethod.Invoke(modelbuilder, new object[] { controller.First().ControllerName });
+                    var entitySetConfiguration = entitySetGenericMethod.Invoke(modelbuilder, new object[] { oneAction.ControllerName });
 
-                    foreach (var action in controller)
+                    foreach (var action in controllerActions)
                     {
                         var actionAttribute = action.MethodInfo.GetCustomAttributes<ODataRequestAttribute>();
                         foreach (var methodAtrribute in actionAttribute)
