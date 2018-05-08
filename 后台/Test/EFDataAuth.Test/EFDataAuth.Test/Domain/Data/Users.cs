@@ -9,6 +9,6 @@ namespace EFDataAuth.Test.Domain.Data
     {
         public string Name { get; set; }
         public string Phone { get; set; }
-        public string Account { get; set; }
+        public int Account { get; set; }
     }
 }

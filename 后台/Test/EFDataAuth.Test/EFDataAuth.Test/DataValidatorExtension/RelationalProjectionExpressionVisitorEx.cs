@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.Expressions;
 using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors;
+using Microsoft.EntityFrameworkCore.Storage;
 using Remotion.Linq.Clauses;
 using Remotion.Linq.Clauses.Expressions;
 using System;
@@ -50,8 +51,17 @@ namespace EFDataAuth.Test.DataValidatorExtension
 
         public override Expression Visit(Expression node)
         {
-            
             if (node == null) return node;
+
+            var targetExpression
+                    = QueryModelVisitor.QueryCompilationContext.QuerySourceMapping
+                        .GetExpression(_querySource);
+
+            if (targetExpression.Type == typeof(ValueBuffer)
+                && !CheckedMember(node as MemberExpression))
+            {
+                return node;
+            }
 
             var result = base.Visit(node);
 
@@ -60,11 +70,10 @@ namespace EFDataAuth.Test.DataValidatorExtension
                 var convert = result as UnaryExpression;
                 var pas = convert.Operand as MethodCallExpression;
                 var parmeter = pas.Arguments.ToArray()[0] as ConstantExpression;
-                if (parmeter.Type == typeof(int) &&object.Equals(parmeter.Value,-999))
+                if (parmeter.Type == typeof(int) && object.Equals(parmeter.Value, -999))
                 {
                     parmeter = Expression.Constant(0);
                     var gentMethod = convertMethod.MakeGenericMethod(convert.Type, parmeter.Type);
-
                     pas = Expression.Call(gentMethod, parmeter);
 
                     result = Expression.Convert(pas, convert.Type);
@@ -72,21 +81,48 @@ namespace EFDataAuth.Test.DataValidatorExtension
                 return result;
             }
 
-            var column = node as MemberExpression;
-            if (column != null && TypeValidator.IsValidat(column.Member.Name) == false)
+            switch (node)
             {
-                var select = column.Expression as QuerySourceReferenceExpression;
-                var type = select.ReferencedQuerySource.ItemType;
-                for (int i = 0; i < Projection.Count; i++)
-                {
-                    var col = Projection[i] as ColumnExpression;
-                    if (col.Name == column.Member.Name)
+                case MemberExpression column:
+                    if(TypeValidator.IsValidat(column.Member.Name) == false)
                     {
-                        Projection.RemoveAt(i);
+                        var select = column.Expression as QuerySourceReferenceExpression;
+                        var type = select.ReferencedQuerySource.ItemType;
+                        for (int i = 0; i < Projection.Count; i++)
+                        {
+                            var col = Projection[i] as ColumnExpression;
+                            if (col.Name == column.Member.Name)
+                            {
+                                Projection.RemoveAt(i);
+                            }
+                        }
                     }
-                }
+                    break;
+                default:
+                    break;
             }
-            
+
+            //var column = node as MemberExpression;
+            //if (column != null && TypeValidator.IsValidat(column.Member.Name) == false)
+            //{
+            //    var select = column.Expression as QuerySourceReferenceExpression;
+            //    var type = select.ReferencedQuerySource.ItemType;
+            //    for (int i = 0; i < Projection.Count; i++)
+            //    {
+            //        var col = Projection[i] as ColumnExpression;
+            //        if (col.Name == column.Member.Name)
+            //        {
+            //            Projection.RemoveAt(i);
+            //        }
+            //    }
+            //}
+
+            return result;
+        }
+
+        private bool CheckedMember(MemberExpression column)
+        {
+            var result = column != null && TypeValidator.IsValidat(column.Member.Name) == false;
             return result;
         }
     }

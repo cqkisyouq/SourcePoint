@@ -5,6 +5,6 @@ namespace EFDataAuth.Test.Interface
 {
     public interface IHttpDbContext
     {
-        IHttpContextAccessor httpContextAccessor { get; set; }
+        IHttpContextAccessor httpContextAccessor { get; }
     }
 }

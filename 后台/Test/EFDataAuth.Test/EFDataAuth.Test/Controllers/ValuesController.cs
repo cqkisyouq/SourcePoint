@@ -25,12 +25,14 @@ namespace EFDataAuth.Test.Controllers
         public IActionResult Get()
         {
            // var ds = _db.Users.WhereIf(true, x => x.Name.Length > 10).ToList();
-            Expression<Func<Users, bool>> expression = query => query.Account.Length > 2;
+            Expression<Func<Users, bool>> expression = query => query.Account > 2;
             var ts = _db.Users.Where(expression.WhereIf(d => d.Name.Length > 10,
                 d=>d.Phone=="123123",
                 d=>d.Name=="dddd"
                 )).ToList();
             var result = _db.Users.Where(x => x.Name.Length > 4).FirstOrDefault(x => x.Name.Length > 5);
+
+            var ds = _db.Users.Join(_db.Users, a => a.CreateTime, b => b.CreateTime, (a, b) => a).ToList();
             return Ok(result);
         }
 

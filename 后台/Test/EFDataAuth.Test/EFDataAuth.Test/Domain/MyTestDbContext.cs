@@ -2,16 +2,16 @@
 using EFDataAuth.Test.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System;
 
 namespace EFDataAuth.Test.Domain
 {
-    public class MyTestDbContext:DbContext, IHttpDbContext
+    public class MyTestDbContext:DbContext
     {
-        public IHttpContextAccessor httpContextAccessor { get; set; }
-        public MyTestDbContext(DbContextOptions<MyTestDbContext> dbContextOptions, IHttpContextAccessor httpContext)
+        public MyTestDbContext(DbContextOptions<MyTestDbContext> dbContextOptions)
             : base(dbContextOptions)
         {
-            httpContextAccessor = httpContext;
         }
         public DbSet<Users> Users { get; set; }
         public  DbSet<Adress> Adress { get; set; }

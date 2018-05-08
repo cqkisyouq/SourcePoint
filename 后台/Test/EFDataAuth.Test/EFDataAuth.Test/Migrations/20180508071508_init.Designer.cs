@@ -11,9 +11,10 @@ using System;
 namespace EFDataAuth.Test.Migrations
 {
     [DbContext(typeof(MyTestDbContext))]
-    partial class MyTestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180508071508_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
