@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Razor.Internal;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor.Internal;
 using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.Extensions.FileProviders;
 using System;
@@ -6,14 +7,15 @@ using System.Collections.Generic;
 
 namespace SourcePoint.Infrastructure.Extensions.MVCExtension
 {
-    public class SourcePointRazorProject : FileProviderRazorProject
+    public class SourcePointRazorProject : FileProviderRazorProjectFileSystem
     {
         private List<PhysicalFileProvider> _provider=new List<PhysicalFileProvider>();
         private IRazorProjectConfiguration _ProjectConfiguration;
         public SourcePointRazorProject(
              IRazorViewEngineFileProviderAccessor accessor
+            , IHostingEnvironment hostingEnvironment
             , IRazorProjectConfiguration razorProjectConfiguration
-            ) : base(accessor)
+            ):base(accessor,hostingEnvironment)
         {
             _ProjectConfiguration = razorProjectConfiguration;
             Init();
@@ -29,7 +31,7 @@ namespace SourcePoint.Infrastructure.Extensions.MVCExtension
                     var fileInfo = item.GetFileInfo(path);
                     if (fileInfo.Exists)
                     {
-                        return new FileProviderRazorProjectItem(fileInfo, basePath: string.Empty, path: path);
+                        return new FileProviderRazorProjectItem(fileInfo, string.Empty,path,item.Root);
                     }
                 }
             }

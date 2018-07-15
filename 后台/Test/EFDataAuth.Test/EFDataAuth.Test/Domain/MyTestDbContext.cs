@@ -3,11 +3,12 @@ using EFDataAuth.Test.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using SourcePoint.Data.EFCore.DataContext;
 using System;
 
 namespace EFDataAuth.Test.Domain
 {
-    public class MyTestDbContext:DbContext
+    public class MyTestDbContext: EFBaseDataContext
     {
         public MyTestDbContext(DbContextOptions<MyTestDbContext> dbContextOptions)
             : base(dbContextOptions)

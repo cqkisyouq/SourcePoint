@@ -25,7 +25,10 @@ namespace Microsoft.AspNetCore.OData
 
         private static IEnumerable<Assembly> GetCandidateAssemblies(IHostingEnvironment environment)
         {
-            var parts = DefaultAssemblyPartDiscoveryProvider.DiscoverAssemblyParts(environment.ApplicationName);
+            //todo  这里有问题 需要获取到  mvc程序集
+           var parts= DefaultApplicationPartFactory.GetDefaultApplicationParts(Assembly.Load(new AssemblyName(environment.ApplicationName)));
+
+            //var parts = DefaultAssemblyPartDiscoveryProvider.DiscoverAssemblyParts(environment.ApplicationName);
             return parts
                 .OfType<AssemblyPart>()
                 .Select(p => p.Assembly)

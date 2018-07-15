@@ -13,14 +13,13 @@ namespace EFDataAuth.Test.DataValidatorExtension
            = typeof(EntityMaterializerSourceEx).GetTypeInfo()
                .GetDeclaredMethod(nameof(TryReadValueCustomer));
 
-        public override Expression CreateReadValueExpression(Expression valueBuffer, Type type, int index, IProperty property = null)
+        public override Expression CreateReadValueExpression(Expression valueBuffer, Type type, int index, IPropertyBase property)
         {
-
             var call = Expression.Call(
-                _tryReadValueMethodCustomer.MakeGenericMethod(type),
-                valueBuffer,
-                Expression.Constant(index),
-                Expression.Constant(property, typeof(IPropertyBase)));
+                 _tryReadValueMethodCustomer.MakeGenericMethod(type),
+                 valueBuffer,
+                 Expression.Constant(index),
+                 Expression.Constant(property, typeof(IPropertyBase)));
 
             return call;
         }

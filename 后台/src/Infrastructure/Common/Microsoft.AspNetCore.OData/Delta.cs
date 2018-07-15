@@ -109,16 +109,17 @@ namespace Microsoft.AspNetCore.OData
         /// <summary>
         /// 改变的属性数据
         /// </summary>
-        public Dictionary<string, object> ChangeProperty = new Dictionary<string, object>();
+        protected Dictionary<string, object> ChangeProperty = new Dictionary<string, object>();
         /// <summary>
         /// 拥有的属性
         /// </summary>
-        public List<string> Propertys = new List<string>();
-        public MethodInfo IsConvertDefault = typeof(Delta<T>).GetMethod(nameof(IsDefault));
+        protected List<string> Propertys = new List<string>();
+        protected MethodInfo IsConvertDefault = typeof(Delta<T>).GetMethod(nameof(IsDefault));
         public Delta(T value)
         {
             _Value = value;
         }
+        public T Model { get { return _Value; } }
 
         public void Patch(object obj, HttpContext httpContext)
         {

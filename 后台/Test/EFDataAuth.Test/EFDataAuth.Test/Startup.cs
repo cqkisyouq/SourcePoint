@@ -35,8 +35,8 @@ namespace EFDataAuth.Test
 
             services.AddDbContext<MyTestDbContext>(option =>
             {
-                option.UseMySql(conString);
-                //option.UseSqlServer(conString);
+               // option.UseMySql(conString);
+                option.UseSqlServer(conString);
                 option.ReplaceService<IEntityQueryModelVisitorFactory, SqlServerQueryModelVisitorFactoryEx>();
                 option.ReplaceService<IEntityMaterializerSource, EntityMaterializerSourceEx>();
                 option.ReplaceService<IProjectionExpressionVisitorFactory, RelationalProjectionExpressionVisitorFactoryEx>();
@@ -53,8 +53,7 @@ namespace EFDataAuth.Test
             , ILoggerFactory loggerFactory)
         {
             app.UseStaticFiles();
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            
+           // loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             app.UseMvc();
         }
     }

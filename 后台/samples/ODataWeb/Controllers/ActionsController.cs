@@ -83,6 +83,13 @@ namespace ODataWeb.Controllers
             return NoContent();
         }
 
+        [HttpPost]
+        [ProducesResponseType(204)]
+        public IActionResult NamePost([FromBody]Delta<ActionOutPut> value)
+        {
+            return Ok(value);
+        }
+
         /// <summary>
         /// 增量更新
         /// </summary>
@@ -92,20 +99,13 @@ namespace ODataWeb.Controllers
         [HttpPatch]
         [ODataRoute("({id})")]
         [ProducesResponseType(204)]
-        public IActionResult Patch(Guid id, [FromBody]ActionOutPut value)
+        public IActionResult Patch(Guid id, [FromBody]Delta<ActionOutPut> deresult)
         {
             if (id == null) return this.ModelStateError(nameof(id), "请填写int");
-            var entity = new List<ActionOutPut>().Where(x=>x.ID==value.ID);
+            
+            deresult.Patch(deresult.Model,this.Services< IHttpContextAccessor>().HttpContext);
 
-            if (entity == null)
-            {
-                return NotFound("没有数据");
-            }
-            
-            Delta<ActionOutPut> deresult = new Delta<ActionOutPut>(value);
-            deresult.Patch(entity,this.Services< IHttpContextAccessor>().HttpContext);
-            
-            if (deresult.HasSourceProperty(nameof(value.Name)))
+            if (deresult.HasSourceProperty(nameof(deresult.Model.Name)))
             {
               
             }

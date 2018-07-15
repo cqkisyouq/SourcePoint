@@ -9,5 +9,12 @@ namespace ODataWeb.Models
     {
         public Guid ID { get; set; }
         public string Name { get; set; }
+        public TesetModel tesetModel { get; set; }
+    }
+
+    public class TesetModel
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
     }
 }

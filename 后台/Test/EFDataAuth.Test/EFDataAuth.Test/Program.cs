@@ -19,7 +19,7 @@ namespace EFDataAuth.Test
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder()
-               // .UseKestrel()
+                .UseKestrel()
                 .UseUrls("http://*:8088")
                 //.UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()

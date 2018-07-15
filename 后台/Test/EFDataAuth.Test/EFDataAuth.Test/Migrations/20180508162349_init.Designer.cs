@@ -11,7 +11,7 @@ using System;
 namespace EFDataAuth.Test.Migrations
 {
     [DbContext(typeof(MyTestDbContext))]
-    [Migration("20171119131445_init")]
+    [Migration("20180508162349_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,7 @@ namespace EFDataAuth.Test.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Account");
+                    b.Property<int>("Account");
 
                     b.Property<DateTime>("CreateTime");
 

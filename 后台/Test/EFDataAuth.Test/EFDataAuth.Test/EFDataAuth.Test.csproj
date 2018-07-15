@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20171119131445_init.cs" />
-    <Compile Remove="Migrations\20171119131445_init.Designer.cs" />
+    <Compile Remove="Migrations\20180508071508_init.cs" />
+    <Compile Remove="Migrations\20180508071508_init.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,13 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
+    <!--<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.0" />-->
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Infrastructure\Data\Data\SourcePoint.Data.EFCore\SourcePoint.Data.EFCore.csproj" />
     <ProjectReference Include="..\..\..\src\Infrastructure\Extensions\ExpressionExtension\ExpressionExtension\SourcePoint.Infrastructure.Extensions.ExpressionExtension.csproj" />
   </ItemGroup>
 

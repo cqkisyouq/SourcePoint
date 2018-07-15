@@ -202,7 +202,7 @@ namespace SourcePoint.Infrastructure.Extensions.SwaggerExtension.Filters
                 OperationFilterContext operationFilterContext = new OperationFilterContext(new Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription()
                 {
                     ActionDescriptor = item
-                }, schemaRegistry);
+                }, schemaRegistry,item.MethodInfo);
 
                 ApplyFilters(operation, operationFilterContext);
             }

@@ -6,8 +6,8 @@ namespace EFDataAuth.Test.Validator
     {
         public static List<string> list = new List<string>()
         {
-            //"CreateTime",
-            //"UpdateTime"
+            "CreateTime",
+            "UpdateTime",
             "Account"
         };
         //todo 这个类要怎么处理 1、想得到注入服务 2、取出数据权限缓存 每次查询的时候进行过滤
