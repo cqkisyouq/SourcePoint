@@ -21,6 +21,11 @@ namespace SourcePoint.Service.Identity.API.Configuration
                     Scopes={
                         new Scope(IdentityServerConstants.StandardScopes.OpenId),
                         new Scope("penApi")
+                    },//设置允许在  identity 里使用的 名称 
+                    UserClaims=new List<string>()
+                    {
+                        JwtClaimTypes.Role,
+                        JwtClaimTypes.Name
                     }
                 }
             };

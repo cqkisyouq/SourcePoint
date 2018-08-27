@@ -6,7 +6,9 @@ using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace SourcePoint.Infrastructure.Extensions.SwaggerExtension
 {
@@ -31,7 +33,24 @@ namespace SourcePoint.Infrastructure.Extensions.SwaggerExtension
                 if (info != null) info(settingInfo);
 
                 x.SwaggerDoc(version, settingInfo);
+
                 if (options != null) options(x);
+                ApiKeyScheme apiKeyScheme = new ApiKeyScheme()
+                {
+                    Name = "Authorization",
+                    Description = "请在 Value 里填入=>  Bearer (拿到的Token)",
+                    In = "header",
+                    Type = "apiKey"
+                };
+
+                x.AddSecurityDefinition("Bearer", apiKeyScheme);
+                x.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>()
+                {
+                    {
+                        "Bearer",
+                        Enumerable.Empty<string>()
+                    }
+                });
 
                 x.IncludeXmlComments();
             });
@@ -50,6 +69,23 @@ namespace SourcePoint.Infrastructure.Extensions.SwaggerExtension
                 x.DocumentFilter<ODataDocumentFilter>(serviceCollection.BuildServiceProvider());
                 x.SwaggerDoc(version, settingInfo);
                 if (options != null) options(x);
+
+                ApiKeyScheme apiKeyScheme = new ApiKeyScheme()
+                {
+                    Name = "Authorization",
+                    Description = "请在 Value 里填入=>  Bearer (拿到的Token)",
+                    In = "header",
+                    Type = "apiKey"
+                };
+
+                x.AddSecurityDefinition("Bearer", apiKeyScheme);
+                x.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>()
+                {
+                    {
+                        "Bearer",
+                        Enumerable.Empty<string>()
+                    }
+                });
 
                 x.IncludeXmlComments();
             });
