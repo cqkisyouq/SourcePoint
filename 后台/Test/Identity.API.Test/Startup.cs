@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication;
+using SourcePoint.Core.Options;
 
 namespace Identity.API.Test
 {
@@ -38,13 +39,16 @@ namespace Identity.API.Test
             });
             #endregion
 
+            var AuthToken = Configuration.GetSection("Identity4AuthOptions:Token").Get<AuthToken>();
+            services.Configure<AuthClient>(Configuration.GetSection("Identity4AuthOptions:Client"));
+
             //ApiResource 所拥的 Scope 一定要跟 Client 有的Scope 对应上
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(option=> {
                     //这里是在对 ApiResource 进行验证  就是在方法上加 [Authorize] 会进行这个验证
-                    option.Authority = "http://localhost:8010";
-                    option.ApiName = "ApiInfo";  //ApiResource 的Name
-                    option.ApiSecret = "passwordq123q"; //ApiResource 的 ApiSecrets
+                    option.Authority = AuthToken.BaseUrl;
+                    option.ApiName = AuthToken.Name;  //ApiResource 的Name
+                    option.ApiSecret = AuthToken.Secret; //ApiResource 的 ApiSecrets
                     option.RequireHttpsMetadata = false;
                 });
             

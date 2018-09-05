@@ -125,7 +125,7 @@ namespace SourcePoint.Infrastructure.Extensions.SwaggerExtension
             string[] xmlFiles = Directory.GetFiles(app.ApplicationBasePath, "*.xml");
             foreach (var file in xmlFiles)
             {
-                options.IncludeXmlComments(file);
+                options.IncludeXmlComments(file,true);//true->使用 controller 描述
             }
         }
     }
