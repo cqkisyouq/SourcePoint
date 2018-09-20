@@ -36,7 +36,7 @@ namespace SourcePoint.Service.ApiGateway
 
             //需要把 Program里把 IWebHostBuilder注入进来  不然后面会报错
             //var whb = services.First(x => x.ServiceType == typeof(IWebHostBuilder));
-            
+
             //用于网关身份验证 
             //services.AddAuthentication()
             //   .AddJwtBearer("TestKey", x =>
@@ -44,9 +44,10 @@ namespace SourcePoint.Service.ApiGateway
             //       x.Authority = "test";
             //       x.Audience = "test";
             //   });
-
-            //InitialTestConsulService(); 用于测试 负载均橫使用的Consul服务信息
+            //InitialTestConsulService();// 用于测试 负载均橫使用的Consul服务信息
             services.AddOcelot(Configuration);
+                //.AddSingletonDefinedAggregator<FakeDefinedAggregator>();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,14 +75,14 @@ namespace SourcePoint.Service.ApiGateway
             {
                 Name = "newapp",//用于配置文件 中的 ServiceName
                 ID = "newapp",
-                Port = 8026,
-                Address = "localhost" //Api服务 真实地址
+                Port = 80,
+                Address = "www.w3school.com.cn" //Api服务 真实地址
             };
             consul.Agent.ServiceRegister(model).GetAwaiter().GetResult();
             
             // 在这里注册二个测试一下 负载的效果
 
-            model.Port = 8025;
+            model.Port = 8089;
             model.ID = "newapp2";
             consul.Agent.ServiceRegister(model).GetAwaiter().GetResult();
         }
