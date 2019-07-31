@@ -1,17 +1,17 @@
 ﻿{
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/{url}",
+      "DownstreamPathTemplate": "/Test/Test/mytest/{id}",
       "DownstreamScheme": "http",
-      "UpstreamPathTemplate": "/{url}",
+      "UpstreamPathTemplate": "/Test/Test/mytest/{id}",
       "DownstreamHostAndPorts": [
         {
-          "Host": "www.w3school.com.cn",
-          "Port": "80"
-        },
+          "Host": "localhost",
+          "Port": "5000"
+        }
         //{
         //  "Host": "localhost",
-        //  "Port": "8089"
+        //  "Port": "5000"
         //}
       ],
       //"UpstreamHttpMethod": [ "Get" ],
@@ -24,7 +24,7 @@
         "DurationOfBreak": 10,
         "TimeoutValue": 5000
       }
-    }
+    },
   ],
 
   "GlobalConfiguration": {
