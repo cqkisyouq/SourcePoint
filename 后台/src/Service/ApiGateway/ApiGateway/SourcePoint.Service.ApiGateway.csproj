@@ -12,9 +12,16 @@
     <PackageReference Include="CacheManager.Core" Version="1.1.2" />
     <PackageReference Include="Consul" Version="0.7.2.6" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
     <PackageReference Include="Ocelot" Version="13.5.2" />
     <PackageReference Include="Ocelot.Provider.Consul" Version="13.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\AspNetSource\Ocelot\src\Ocelot.Provider.Consul\Ocelot.Provider.Consul.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\..\AspNetSource\Ocelot\src\Ocelot\Ocelot.csproj" />
   </ItemGroup>
 
 </Project>

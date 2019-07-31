@@ -10,7 +10,7 @@ using Ocelot.Middleware;
 using System;
 using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
 using Ocelot.Provider.Consul;
-
+using Microsoft.AspNetCore.Authentication;
 namespace SourcePoint.Service.ApiGateway
 {
     public class Startup
@@ -37,15 +37,16 @@ namespace SourcePoint.Service.ApiGateway
 
             //需要把 Program里把 IWebHostBuilder注入进来  不然后面会报错
             //var whb = services.First(x => x.ServiceType == typeof(IWebHostBuilder));
-
+            
             //用于网关身份验证 
-            //services.AddAuthentication()
-            //   .AddJwtBearer("TestKey", x =>
-            //   {
-            //       x.Authority = "test";
-            //       x.Audience = "test";
-            //   });
-           //InitialTestConsulService();// 用于测试 负载均橫使用的Consul服务信息
+            services.AddAuthentication()
+               .AddJwtBearer("TestKey", x =>
+               {
+                   x.Authority = "test";
+                   x.Audience = "test";
+                   x.RequireHttpsMetadata = false;
+               });
+            //InitialTestConsulService();// 用于测试 负载均橫使用的Consul服务信息
             services.AddOcelot(Configuration)
                 .AddConsul()
                 .AddConfigStoredInConsul()
@@ -54,7 +55,7 @@ namespace SourcePoint.Service.ApiGateway
             services.AddLogging(options =>
             {
                 options.AddConsole();
-                options.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
+                options.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Warning);
             });
         }
 
@@ -63,7 +64,7 @@ namespace SourcePoint.Service.ApiGateway
             , IHostingEnvironment env
             ,ILoggerFactory loggerFactory)
         {
-
+            
             //使用格式  http://localhost:8088/platform/Navigations
             //看configuration.json中的配置对应上
             app.UseStaticFiles();
