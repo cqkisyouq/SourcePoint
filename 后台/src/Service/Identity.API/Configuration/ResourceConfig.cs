@@ -20,7 +20,8 @@ namespace SourcePoint.Service.Identity.API.Configuration
                     ApiSecrets={new Secret("passwordq123q".Sha256())},
                     Scopes={
                         new Scope(IdentityServerConstants.StandardScopes.OpenId),
-                        new Scope("penApi")
+                        new Scope("penApi"),
+                        new Scope("apptoken")
                     },//设置允许在  identity 里使用的 名称 
                     UserClaims=new List<string>()
                     {

@@ -89,6 +89,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BB12C6CF-B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourcePoint.Core", "src\Infrastructure\Core\SourcePoint.Core\SourcePoint.Core.csproj", "{77C3A259-24F1-4ECD-B3FA-A4F616B13B39}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ocelot", "..\..\..\AspNetSource\Ocelot\src\Ocelot\Ocelot.csproj", "{75D86C22-FB92-4A84-A830-275C010EF2D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ocelot.Provider.Consul", "..\..\..\AspNetSource\Ocelot\src\Ocelot.Provider.Consul\Ocelot.Provider.Consul.csproj", "{072D1518-B7CA-4ABE-B9E0-B1B333290303}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +187,14 @@ Global
 		{77C3A259-24F1-4ECD-B3FA-A4F616B13B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77C3A259-24F1-4ECD-B3FA-A4F616B13B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77C3A259-24F1-4ECD-B3FA-A4F616B13B39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D86C22-FB92-4A84-A830-275C010EF2D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D86C22-FB92-4A84-A830-275C010EF2D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D86C22-FB92-4A84-A830-275C010EF2D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D86C22-FB92-4A84-A830-275C010EF2D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{072D1518-B7CA-4ABE-B9E0-B1B333290303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{072D1518-B7CA-4ABE-B9E0-B1B333290303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{072D1518-B7CA-4ABE-B9E0-B1B333290303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{072D1518-B7CA-4ABE-B9E0-B1B333290303}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -228,6 +240,8 @@ Global
 		{6DB6AAED-D4E2-45EB-A9E8-423784F6CCFC} = {E4C09DC7-F087-41F1-8E77-9F556C61D8DF}
 		{BB12C6CF-B861-4B8D-B61D-BAD5096818CD} = {D5F97F6F-979D-4107-92C6-83FC0ACC1EFA}
 		{77C3A259-24F1-4ECD-B3FA-A4F616B13B39} = {BB12C6CF-B861-4B8D-B61D-BAD5096818CD}
+		{75D86C22-FB92-4A84-A830-275C010EF2D1} = {E0501939-5209-4932-8BF9-2B5A7149FD33}
+		{072D1518-B7CA-4ABE-B9E0-B1B333290303} = {E0501939-5209-4932-8BF9-2B5A7149FD33}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8149C2B1-3D22-4D10-962D-58221876BF43}

@@ -37,15 +37,26 @@ namespace SourcePoint.Service.ApiGateway
 
             //需要把 Program里把 IWebHostBuilder注入进来  不然后面会报错
             //var whb = services.First(x => x.ServiceType == typeof(IWebHostBuilder));
-            
+
             //用于网关身份验证 
+            //services.AddAuthentication()
+            //   .AddJwtBearer("TestKey", x =>
+            //   {
+            //       x.Authority = "test";
+            //       x.Audience = "test";
+            //       x.RequireHttpsMetadata = false;
+            //   });
+
             services.AddAuthentication()
-               .AddJwtBearer("TestKey", x =>
-               {
-                   x.Authority = "test";
-                   x.Audience = "test";
-                   x.RequireHttpsMetadata = false;
-               });
+              .AddIdentityServerAuthentication("TestKey",option =>
+              {
+                  //这里是在对 ApiResource 进行验证  就是在方法上加 [Authorize] 会进行这个验证
+                  option.Authority = "http://localhost:8010";
+                  option.ApiName = "ApiInfo";  //ApiResource 的Name
+                  option.ApiSecret = "passwordq123q"; //ApiResource 的 ApiSecrets
+                  option.RequireHttpsMetadata = false;
+              });
+
             //InitialTestConsulService();// 用于测试 负载均橫使用的Consul服务信息
             services.AddOcelot(Configuration)
                 .AddConsul()

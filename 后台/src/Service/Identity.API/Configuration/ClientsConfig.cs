@@ -28,6 +28,23 @@ namespace SourcePoint.Service.Identity.API.Configuration
             client.AllowedGrantTypes = GrantTypes.ResourceOwnerPassword;
             client.AllowedScopes = new List<string>() { "penApi", IdentityServerConstants.StandardScopes.OpenId };
             list.Add(client);
+
+            list.Add(new Client
+            {
+                ClientName="token测试",
+                ClientId="pen.token",
+                ClientSecrets = {
+                    new Secret("123456".Sha256())
+                },
+                AllowOfflineAccess=true,
+                AllowedGrantTypes=GrantTypes.HybridAndClientCredentials,
+                AllowedScopes =
+                {
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    "apptoken"
+                }
+            });
             return list;
         }
     }

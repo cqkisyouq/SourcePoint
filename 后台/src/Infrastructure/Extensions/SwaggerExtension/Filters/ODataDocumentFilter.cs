@@ -144,7 +144,7 @@ namespace SourcePoint.Infrastructure.Extensions.SwaggerExtension.Filters
             {
                 var method = item.MethodInfo.GetCustomAttribute<HttpMethodAttribute>();
                 var paramters = item.Parameters;
-
+                
                 Operation operation = new Operation()
                 {
                     OperationId = $"{item.Id}",

@@ -30,6 +30,9 @@ namespace SourcePoint.Service.Identity.API.Validator
                        new List<Claim>() //如果 apiResource里没有配置以下属性  下面设置就会不启作用
                        {
                             new Claim(JwtClaimTypes.Name,userId.ToString()), //把用户ID返给Client端
+                           new Claim(JwtClaimTypes.Role,"read"),
+                           new Claim(JwtClaimTypes.Role,"write"),
+                           new Claim(JwtClaimTypes.Role,"search")
                                                                              //new Claim(JwtClaimTypes.Role,"mi"), 这里直接对Client端进行 角色授权
                        }
                    );

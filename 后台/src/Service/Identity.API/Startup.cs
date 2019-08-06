@@ -61,6 +61,9 @@ namespace SourcePoint.Service.Identity.API
                     .AddConfigurationStore(store =>
                     {
                         store.ConfigureDbContext = options =>
+                        //options.UseSqlServer(conString
+                        //    , optionAction => optionAction.MigrationsAssembly(migrationsAssembly)
+                        //);
                         options.UseSqlServer(conString
                             , optionAction => optionAction.MigrationsAssembly(migrationsAssembly)
                         );
@@ -98,15 +101,15 @@ namespace SourcePoint.Service.Identity.API
             //Add-Migration -c PersistedGrantDbContext name  这里因为有多个DbContext 需要指定对谁做迁移
             //Add-Migration -c ConfigurationDbContext
             //update-database -c PersistedGrantDbContext  使用的时候跟上面一样 在多配置下需要指定使用谁的
-            //InitIdentityData(app.ApplicationServices);
+            InitIdentityData(app.ApplicationServices);
         }
 
         private void InitIdentityData(IServiceProvider serviceProvider)
         {
             using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-               // serviceScope.ServiceProvider.GetService<ConfigurationDbContext>().Database.Migrate();
-               // serviceScope.ServiceProvider.GetService<PersistedGrantDbContext>().Database.Migrate();
+                serviceScope.ServiceProvider.GetService<ConfigurationDbContext>().Database.Migrate();
+                serviceScope.ServiceProvider.GetService<PersistedGrantDbContext>().Database.Migrate();
                 EnsureSeedData(serviceScope.ServiceProvider.GetService<ConfigurationDbContext>());
             }
         }
